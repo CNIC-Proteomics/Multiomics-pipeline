@@ -1,8 +1,8 @@
 # TAREAS
 Tareas:
-1) Alessia te va a pasar los datos originales de PESA y ALDH4. Ambos son experimentos
-Untargeted, por lo que deberás aplicar el preprocesado correspondiente. 
-	. Debes utilizar la función shiftCor de statTarget en R:
+1) Datos originales de PESA y ALDH4. Ambos son experimentos
+Untargeted, por lo que hay que aplicar el preprocesado correspondiente. 
+	. Utilizar la función shiftCor de statTarget en R:
 		- https://rdrr.io/bioc/statTarget/man/shiftCor.html
 		- https://stattarget.github.io/docs/quick-start/
 		  Formato de tablas
