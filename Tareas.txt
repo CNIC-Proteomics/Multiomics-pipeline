@@ -1,0 +1,43 @@
+TAREAS
+
+Para Jesús: 
+
+1)	. Sacar heatmap que indique en cada posición del péptido el número de cada tipo de modificacion
+	. Sacar mapa para analizar Z de pgm2p, p2qf y qf2q a lo largo de toda la proteína
+
+
+
+Para Multiómica:
+
+1) 	Análisis de grafo en PESA
+	. En combinación con análisis de factores, analizar grafo, subgrafos y aplicar
+	  ideas de WGCNA.
+
+
+2)	Análisis de factores y grafo en AWHS siguiendo esquema de PESA
+
+3)	ALDH4 lo tenemos paralizado. Al retomarlo es preciso:
+	. Lanzar CMM con features filtradas (hemos cambiado el criterio del ANOVA)!!!
+	. Lanzar TurboP con anotaciones de CMM
+
+4)	. ALDH4: Crear una tabla f2i con anotaciones de metabolitos
+	  combinando los que dio Alessia y los sacados de TP. (Estos últimos los menos seguros)
+	-> Para ALDH4 tenemos un problema: Perdemos features identificadas por Alessia y del paper:
+		- Al eliminar features que tienen más de un missing value en alguno de los grupos
+		- Filtrar por ANOVA: Esto lo hemos cambiado, si lo perdemos, es que no es relevante...
+
+*** Los puntos 3 y 4 de ALDH4 los dejamos en stand-by hasta que solucionemos el asunto,
+hay bastante por hacer en PESA AWHS...
+
+
+
+* El análisis y WF sobre ALDH4 se presenta como un ejemplo en tejido donde es preciso aplicar
+  un tipo de feature selection y que muestra que se puede trabajar con muestras más pequeñas
+  y metadatos más sencillos.
+
+
+* Continuar análisis de grafo:
+	- Justificar número de iteraciones y/o threshold empleando grafos aleatorios.
+	- Una vez tienes clusteres qq y mm analizar densidades entre cada pareja y comparar
+	  con densidad global. Lo suyo sería centrarte en los que están por encima...
+	- Si no, centrarte solo en aquellas parejas asociadas por autofeature a caso/control
