@@ -2,16 +2,39 @@ TAREAS
 
 Para Jesús: 
 
-1)	. Sacar heatmap que indique en cada posición del péptido el número de cada tipo de modificacion
+1)	. Scar plot aa vs dm con tamaño de punto proporcional a número de scanes
+	. Sacar heatmap que indique en cada posición del péptido el número de cada tipo de modificacion
 	. Sacar mapa para analizar Z de pgm2p, p2qf y qf2q a lo largo de toda la proteína
 
 
 
 Para Multiómica:
 
+1) Machine learning usando PESA y AWHS
+2) Aplicar MOFA a AWHS
+	- Factor 2 de MOFA-PESA: Sacar heatmap, metabolitos más asociados y combinar con grafo de rCCA
+	  ver qué features son las más conectadas con estas proteínas.
+
+	- En el report, en la parte relativa a MOFA, basta con señalar las correlaciones globales
+	  que detecta el modelo. Presencia de apolipoproteínas, complemento e inmunoglobulinas
+	  en los factores más asociados a condición caso/control o FHS y asociación lípidos como
+ 	  TG, DAG u otros. PESA y AWHS son datos muy distintos, así que no debemos buscar una 
+	  validación rígida sino coincidencias y complementariedad.
+
+---------
+
 1) 	Análisis de grafo en PESA
 	. En combinación con análisis de factores, analizar grafo, subgrafos y aplicar
 	  ideas de WGCNA.
+
+* Continuar análisis de grafo:
+	- Pretenencia de cada feature a su cluster por correlación
+	- Analizar conexiones entre clústeres usando la hipergeométrica. (otra posibilidad es densidad de conexiones)
+	  Puede ser que esto sea una prueba de la asocación de proteínas y metabolitos (parar aquí?)
+
+	- En pyvis, color aristas según subgrafo de procedencia
+	- Analizar nodos con valores altos en métricas locales (degree, betwenness, cercanía...)
+	- Comparar nº de cliqués y componentes conexas con los grafos aleatorios (no es tan importante)
 
 
 2)	Análisis de factores y grafo en AWHS siguiendo esquema de PESA
@@ -36,8 +59,3 @@ hay bastante por hacer en PESA AWHS...
   y metadatos más sencillos.
 
 
-* Continuar análisis de grafo:
-	- Justificar número de iteraciones y/o threshold empleando grafos aleatorios.
-	- Una vez tienes clusteres qq y mm analizar densidades entre cada pareja y comparar
-	  con densidad global. Lo suyo sería centrarte en los que están por encima...
-	- Si no, centrarte solo en aquellas parejas asociadas por autofeature a caso/control

@@ -13,12 +13,14 @@ from scipy.stats import mannwhitneyu, chi2_contingency
 
 class MetadataStats:
 
-    def __init__(self, mdata, file=False) -> None:
+    def __init__(self, mdata, groupCol='Group', C='C', D='D', file=False) -> None:
+        
         
         self.mdata = mdata
+        self.groupCol = groupCol; self.c = C; self.d = D
         
-        self.cbool = mdata['Group'] == 'C'
-        self.dbool = mdata['Group'] == 'D'
+        self.cbool = mdata[self.groupCol] == self.c
+        self.dbool = mdata[self.groupCol] == self.d
 
         self.file = file
 
@@ -33,9 +35,9 @@ class MetadataStats:
     def plotQuanCols(self, quanCols):
         fig = make_subplots(rows=1, cols=len(quanCols), subplot_titles=quanCols, horizontal_spacing=0.4/(len(quanCols)-1))
         for ncol, col in enumerate(quanCols):
-            for n,g in enumerate(['C', 'D']):
+            for n,g in enumerate([self.c, self.d]):
                 fig.add_trace(go.Box(
-                    y=self.mdata.loc[self.mdata['Group'] == g, col],
+                    y=self.mdata.loc[self.mdata[self.groupCol] == g, col],
                     marker_color=self.palette[n],
                     name=g,
                     hoverinfo='skip',
@@ -59,8 +61,8 @@ class MetadataStats:
         for i in quanCols:
             print(i)
             tmp = mannwhitneyu(
-                mdata.loc[mdata['Group']=='D', i],
-                mdata.loc[mdata['Group']=='C', i],
+                mdata.loc[mdata[self.groupCol]==self.d, i],
+                mdata.loc[mdata[self.groupCol]==self.c, i],
                 use_continuity=False, nan_policy='omit'
             )
             print(f"Statistic = {tmp.statistic} | p-value = {tmp.pvalue}")
@@ -73,18 +75,18 @@ class MetadataStats:
 
         #col = qualCols[1]
         for n,col in enumerate(qualCols):
-            gc = self.mdata.loc[self.mdata['Group']=='C',col].value_counts()
-            gd = self.mdata.loc[self.mdata['Group']=='D',col].value_counts()
+            gc = self.mdata.loc[self.mdata[self.groupCol]==self.c,col].value_counts()
+            gd = self.mdata.loc[self.mdata[self.groupCol]==self.d,col].value_counts()
 
 
             fig.add_trace(go.Bar(
-                name='C', x=['No', 'Yes'], y=[gc[0], gc[1]], marker_color=self.palette[0],
+                name=self.c, x=['No', 'Yes'], y=[gc[0], gc[1]], marker_color=self.palette[0],
                 showlegend=True if n==0 else False,
                 width=0.6
             ), row=1, col=n+1)
 
             fig.add_trace(go.Bar(
-                name='D', x=['No', 'Yes'], y=[gd[0], gd[1]], marker_color=self.palette[1],
+                name=self.d, x=['No', 'Yes'], y=[gd[0], gd[1]], marker_color=self.palette[1],
                 showlegend=True if n==0 else False,
                 width=0.6
             ), row=1, col=n+1)
@@ -99,7 +101,7 @@ class MetadataStats:
         for i in qualCols:
             print(i)
             tmp = chi2_contingency(
-                pd.crosstab(mdata['Group'], mdata[i]),
+                pd.crosstab(mdata[self.groupCol], mdata[i]),
                 correction=False
             )
 

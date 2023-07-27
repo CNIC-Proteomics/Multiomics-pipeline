@@ -113,3 +113,19 @@ Empleando WorkingFilesGenerator generamos los siguientes ficheros:
 	- 
 - q2info.tsv: Información de proteínas (id, desc, ScanFreq)
 - n2info.tsv: 
+
+
+
+#         #
+# PESA V2 #
+#         #
+
+#
+# Original Files
+# 
+
+- Los datos cuantitativos se obtuvieron directamente de los ficheros Q2A_outStats.xls del SanXoT.
+  La estructura del path es la siguiente:
+  "S:\U_Proteomica\PROYECTOS\PESA_omicas\2a_Cohorte_120_V2\Proteomics\TMT_Fraccionamiento\TMT1\SanXoT\127_C\data\Q2A_outStats.xls"
+
+- Para calcular el LowerNorm (X') hemos restado en estos ficheros la columna Xinf-Xsup.

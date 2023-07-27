@@ -102,18 +102,18 @@ def PCA_Var(df, mdata, conVars, catVars, n_comp=10):
                 X[:, j],
                 sm.add_constant(mdata.set_index('Seqn').loc[df.index, i])
             ).fit()
-            pv[i].append(round(model.pvalues[-1], 4))
+            pv[i].append(model.pvalues[-1])
             rs[i].append(model.rsquared)
 
     for i in catVars:
         pv[i] = []
         for j in range(n_comp):
-            pv[i].append(round(sm.stats.anova_lm(ols(
+            pv[i].append(sm.stats.anova_lm(ols(
                 'y ~ C(x)', 
                 pd.DataFrame({
                     'y': X[:, j],
                     'x': mdata.set_index('Seqn').loc[df.index, i]
                 })
-            ).fit())['PR(>F)']['C(x)'],4))
+            ).fit())['PR(>F)']['C(x)'])
 
     return pd.DataFrame(pv, index=range(1, n_comp+1))

@@ -119,7 +119,7 @@ def get_pvalues(corr, h0c, ctype_omic, size=1000):
                 nullD = np.abs(h0c[ctype][omic][ss])
                 if nullD.shape[0] > size: nullD = np.random.choice(nullD, size=size, replace=False)
 
-                pvals[ctype][omic][ss] = getattr(corr, ctype)[omic][ss].applymap(lambda x: ((nullD>=x).sum()+1)/(nullD.shape[0]+1))
+                pvals[ctype][omic][ss] = getattr(corr, ctype)[omic][ss].applymap(lambda x: ((nullD>=np.abs(x)).sum()+1)/(nullD.shape[0]+1))
     
     return pvals
 

@@ -8,6 +8,7 @@ import pandas as pd
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import plotly.express as px
 
 from sklearn.preprocessing import StandardScaler, RobustScaler
 from scipy.stats import kruskal
@@ -31,7 +32,8 @@ class PlotEDA:
 
         self.mdata = mdata[np.isin(mdata['Seqn'], self.xf.index)]
 
-        self.palette = ['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880']
+        #self.palette = ['#636EFA', '#EF553B', '#00CC96', '#AB63FA', '#FFA15A', '#19D3F3', '#FF6692', '#B6E880']
+        self.palette = px.colors.qualitative.Alphabet
 
         self.file = file
         #if self.file and os.path.exists(self.file): os.remove(self.file)
